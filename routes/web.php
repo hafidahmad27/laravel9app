@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\SalesController;
+use App\Models\Sales;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [SalesController::class, 'index'])->name('sales.index');
+Route::get('create', [SalesController::class, 'create'])->name('sales.create');
+Route::post('sales', [SalesController::class, 'store'])->name('sales.store');
+Route::get('edit/{id}', [SalesController::class, 'edit'])->name('sales.edit');
+Route::post('update/{sales}', [SalesController::class, 'update'])->name('sales.update');
+Route::get('destroy/{id}', [SalesController::class, 'destroy'])->name('sales.destroy');
